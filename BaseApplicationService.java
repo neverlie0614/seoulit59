@@ -1,4 +1,4 @@
-package kr.co.JH5th.base.applicationService;
+﻿package kr.co.JH5th.base.applicationService;
 
 import java.util.List;
 
@@ -19,4 +19,11 @@ public interface BaseApplicationService {
 	
 	public List<MenuTO> findMenuList();
 	
+
+
+
 }
+
+
+
+변경이 되는지 확인을 위한 글

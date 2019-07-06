@@ -60,3 +60,6 @@ public class BaseApplicationServiceImpl implements BaseApplicationService{
 	}
 
 }
+
+
+변경이 되는지 확인을 위한 글2
