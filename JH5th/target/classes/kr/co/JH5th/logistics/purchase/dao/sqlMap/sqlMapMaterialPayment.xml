@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.JH5th.logistics.purchase.dao.MaterialPaymentDAO">
+
+	<!-- materialPaymentDAO -->
+	<resultMap type="materialPaymentTO" id="materialPaymentResult">
+
+	<result property="itemCode" column="ITEM_CODE"/>
+	<result property="paymentDate" column="PAYMENT_DATE"/>
+	<result property="workInstructionNo" column="WORK_INSTRUCTION_NO"/>
+	<result property="itemName" column="ITEM_NAME"/>
+	<result property="paymentAmount" column="PAYMENT_AMOUNT"/>
+	<result property="unitPayment" column="UNIT_PAYMENT"/>
+	<result property="description" column="DESCRIPTION"/>
+
+	</resultMap>
+
+
+	<select id="selectMaterialPaymentList" resultMap="materialPaymentResult">
+
+		SELECT
+		ITEM_CODE, PAYMENT_DATE, WORK_INSTRUCTION_NO
+		, ITEM_NAME, PAYMENT_AMOUNT, UNIT_PAYMENT, DESCRIPTION
+		FROM MATERIAL_PAYMENT
+
+	</select>
+
+
+
+	<insert id="insertMaterialPayment" parameterType="materialPaymentTO">
+
+		INSERT INTO MATERIAL_PAYMENT
+		VALUES
+		( #{itemCode}
+		, #{paymentDate}
+		, #{workInstructionNo}
+		, #{itemName}
+		, #{paymentAmount}
+		, #{unitPayment}
+		, #{description} )
+
+	</insert>
+
+
+
+
+
+
+</mapper>

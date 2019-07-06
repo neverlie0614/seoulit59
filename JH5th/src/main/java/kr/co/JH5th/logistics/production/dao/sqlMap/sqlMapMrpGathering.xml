@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.JH5th.logistics.production.dao.MrpGatheringDAO">
+
+	<!-- mrpGatheringDAO -->
+
+<!-- 	<typeAlias alias="mrpGatheringTO" type="kr.co.JH5th.logistics.production.to.MrpGatheringTO"/>
+
+
+	<resultMap class="mrpGatheringTO" id="mrpGatheringResult">
+
+	<result property="mrpGatheringNo" column="MRP_GATHERING_NO"/>
+	<result property="orderOrProductionStatus" column="ORDER_OR_PRODUCTION_STATUS"/>
+	<result property="itemCode" column="ITEM_CODE"/>
+	<result property="itemName" column="ITEM_NAME"/>
+	<result property="unitOfMrpGathering" column="UNIT_OF_MRP_GATHERING"/>
+	<result property="necessaryAmount" column="NECESSARY_AMOUNT"/>
+	<result property="dueDate" column="DUE_DATE"/>
+	<result property="claimDate" column="CLAIM_DATE"/>
+	<result property="onGoingProcessStatus" column="ON_GOING_PROCESS_STATUS"/>
+
+
+
+	</resultMap>
+
+	<select id="selectMrpGatheringList" resultMap="mrpGatheringResult">
+
+		SELECT
+		MRP_GATHERING_NO, ORDER_OR_PRODUCTION_STATUS
+		, ITEM_CODE, ITEM_NAME,	UNIT_OF_MRP_GATHERING
+		, NECESSARY_AMOUNT, DUE_DATE, CLAIM_DATE, ON_GOING_PROCESS_STATUS
+		FROM MRP_GATHERING
+		ORDER BY MRP_GATHERING_NO
+	</select>
+
+
+
+	<insert id="insertMrpGathering" parameterClass="mrpGatheringTO">
+
+		INSERT INTO MRP_GATHERING
+		VALUES
+		( #mrpGatheringNo#
+		, #orderOrProductionStatus#
+		, #itemCode#
+		, #itemName#
+		, #unitOfMrpGathering#
+		, #necessaryAmount#
+		, #dueDate#
+		, #claimDate#
+		, #onGoingProcessStatus# )
+
+	</insert>
+
+
+
+	<update id="updateMrpGathering" parameterClass="mrpGatheringTO">
+
+		UPDATE MRP_GATHERING SET
+		ORDER_OR_PRODUCTION_STATUS = #orderOrProductionStatus#
+		, ITEM_CODE = #itemCode#
+		, ITEM_NAME = #itemName#
+		, UNIT_OF_MRP_GATHERING = #unitOfMrpGathering#
+		, NECESSARY_AMOUNT = #necessaryAmount#
+		, DUE_DATE = #dueDate#
+		, CLAIM_DATE = #claimDate#
+		, ON_GOING_PROCESS_STATUS = #onGoingProcessStatus#
+		WHERE
+		MRP_GATHERING_NO = #mrpGatheringNo#
+
+	</update>
+
+
+	<delete id="deleteMrpGathering" parameterClass="mrpGatheringTO">
+
+		DELETE FROM MRP_GATHERING
+		WHERE MRP_GATHERING_NO = #mrpGatheringNo#
+
+
+	</delete> -->
+
+
+
+
+<!-- mrpGatheringDAO -->
+
+   <!-- 쿼리용 -->
+      <resultMap id="mrpGatheringResult2" type="mrpGatheringTO2">
+      <result property="mrpGatheringNo" column="MRP_GATHERING_NO" />
+      <result property="mrpNo" column="MRP_NO" />
+      <result property="orderOrProductionStatus" column="ORDER_OR_PRODUCTION_STATUS" />
+      <result property="itemCode" column="ITEM_CODE" />
+      <result property="itemName" column="ITEM_NAME" />
+      <result property="unitOfMrpGathering" column="UNIT_OF_MRP_GATHERING" />
+      <result property="necessaryAmount" column="NECESSARY_AMOUNT" />
+      <result property="dueDate" column="DUE_DATE" />
+      <result property="claimDate" column="CLAIM_DATE" />
+   </resultMap>
+
+
+	<!-- 셀렉트용 -->
+   <resultMap id="mrpGatheringResult" type="mrpGatheringTO">
+      <result property="mrpGatheringNo" column="MRP_GATHERING_NO" />
+      <result property="orderOrProductionStatus" column="ORDER_OR_PRODUCTION_STATUS" />
+      <result property="itemCode" column="ITEM_CODE" />
+      <result property="itemName" column="ITEM_NAME" />
+      <result property="unitOfMrpGathering" column="UNIT_OF_MRP_GATHERING" />
+      <result property="necessaryAmount" column="NECESSARY_AMOUNT" />
+      <result property="dueDate" column="DUE_DATE" />
+      <result property="claimDate" column="CLAIM_DATE" />
+      <result property="onGoingProcessStatus" column="ON_GOING_PROCESS_STATUS" />
+   </resultMap>
+
+
+
+
+<!--     <parameterMap id="MrpGatheringParameter" class="map">
+      <parameter property="mpsNo" typeHandler="kr.co.ahram.common.util.OracleCallBackHandler" mode="IN" />
+     <parameter property="errorCode" jdbcType="DECIMAL" javaType="java.lang.Integer" mode="OUT" />
+      <parameter property="errorMsg" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT" />
+      <parameter property="result" jdbcType="CURSOR" javaType="java.sql.ResultSet" mode="OUT" /> 
+      </parameterMap> -->
+
+
+
+ <parameterMap id="MrpGatheringOpenParameter" type="map">
+      <parameter property="paramArray" typeHandler="kr.co.JH5th.common.util.OracleCallBackHandler" mode="IN" />
+      <parameter property="errorCode" jdbcType="DECIMAL" javaType="java.lang.Integer" mode="OUT" />
+      <parameter property="errorMsg" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT" />
+      <!-- <parameter property="result" jdbcType="CURSOR" javaType="java.sql.ResultSet" mode="OUT" /> --> 
+   </parameterMap>
+
+    <select id="selectMrpGatheringList2" parameterMap="MrpGatheringOpenParameter" resultMap="mrpGatheringResult2" statementType="CALLABLE">
+    <![CDATA[
+    {call MRP_GATHERING_PKG.P_MRP_GATHERING(?,?,?)}
+    ]]>
+   </select>
+
+
+<!-- 
+   <select id="selectMrpGatheringList2" parameterClass="string" resultMap="mrpGatheringResult2">
+    <![CDATA[
+      SELECT
+      CASE WHEN MRP_GATHERING_NO IS NULL THEN
+    MIN( 'MR'||TO_CHAR(SYSDATE,'yyyymmdd')||LPAD(ROWNUM,2,0)) END as MRP_GATHERING_NO ,
+    substr(xmlagg(xmlelement(a,',',MRP_NO
+    ) order by MRP_NO).extract('//text()'),2)  AS MRP_NO,
+
+
+ ( CASE TO_CHAR(ITEM_CLASSIFICATION) WHEN 'IT-MA' THEN '구매'
+            WHEN 'IT-SI' THEN '생산' WHEN 'IT-CI' THEN '생산'
+            ELSE TO_CHAR(ITEM_CLASSIFICATION) END ) AS ORDER_OR_PRODUCTION_STATUS,
+    ITEM_CODE, ITEM_NAME, UNIT_OF_MRP AS UNIT_OF_MRP_GATHERING,
+    MIN(ORDER_DATE) AS CLAIM_DATE, MIN(REQUIRED_DATE) AS DUE_DATE,
+    SUM(REQUIRED_AMOUNT) AS NECESSARY_AMOUNT
+FROM (
+    SELECT * FROM MRP
+    WHERE MRP_GATHERING_STATUS = 'N'
+    AND MRP_NO IN ( SELECT TRIM( REGEXP_SUBSTR( (SELECT #mrpNo# FROM DUAL ) ,'[^,]+', 1, LEVEL ) ) AS MRP_NO FROM DUAL
+CONNECT BY REGEXP_SUBSTR( (SELECT #mrpNo# FROM DUAL ) , '[^,]+', 1, LEVEL ) IS NOT NULL )
+    )
+GROUP BY ITEM_CLASSIFICATION, ITEM_CODE, ITEM_NAME, UNIT_OF_MRP,MRP_GATHERING_NO
+ORDER BY CLAIM_DATE, ORDER_OR_PRODUCTION_STATUS,MRP_GATHERING_NO
+    ]]>
+   </select>
+ -->
+ 
+ 
+ 
+<!-- 
+SELECT
+		*
+		FROM MRP_GATHERING
+		WHERE ON_GOING_PROCESS_STATUS != 'Y'
+		AND ORDER_OR_PRODUCTION_STATUS !='구매'
+		ORDER BY MRP_GATHERING_NO
+ -->
+   <select id="selectMrpGatheringList" resultMap="mrpGatheringResult" parameterType="HashMap">
+    
+		SELECT
+		*
+		FROM MRP_GATHERING
+		<choose>
+			<when test="gatheringStatus.equals('N')">
+			WHERE 
+      		MRP_GATHERING_STATUS != 'Y'
+			</when>
+			<when test="gatheringStatus!='N'">
+			WHERE MRP_GATHERING_NO IS NOT NULL	
+			</when>
+		</choose>
+		ORDER BY MRP_GATHERING_NO
+   </select>
+
+   <insert id="insertMrpGathering" parameterType="mrpGatheringTO">
+      <![CDATA[
+           INSERT INTO
+         MRP_GATHERING
+
+         VALUES (
+         #{mrpGatheringNo},
+         #{orderOrProductionStatus},
+         #{itemCode},
+         #{itemName},
+         #{unitOfMrpGathering},
+         #{necessaryAmount},
+         #{dueDate},
+         #{claimDate},
+         'N'
+         )
+       ]]>
+   </insert>
+
+     <update id="updateMrpGathering" parameterType="mrpGatheringTO">
+      <![CDATA[
+         UPDATE
+         MRP_GATHERING
+
+         SET
+         ON_GOING_PROCESS_STATUS = #{onGoingProcessStatus}
+         WHERE MRP_GATHERING_NO = #{mrpGatheringNo}
+
+       ]]>
+   </update>
+
+
+
+
+
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.JH5th.base.dao.CodeDAO">
+
+
+
+<!-- codeDAO -->
+  	
+
+	<resultMap type="codeTO" id="codeResult">
+
+	<result property="divisionCodeNo" column="DIVISION_CODE_NO"/>
+	<result property="codeType" column="CODE_TYPE"/>
+	<result property="divisionCodeName" column="DIVISION_CODE_NAME"/>
+	<result property="codeChangeAvailable" column="CODE_CHANGE_AVAILABLE"/>
+	<result property="description" column="DESCRIPTION"/>
+
+	</resultMap>
+
+
+ 	<select id="selectCodeList" resultMap="codeResult">
+
+		SELECT
+		DIVISION_CODE_NO, CODE_TYPE, DIVISION_CODE_NAME
+		,CODE_CHANGE_AVAILABLE, DESCRIPTION
+		FROM CODE
+
+
+	</select>
+
+
+
+</mapper>

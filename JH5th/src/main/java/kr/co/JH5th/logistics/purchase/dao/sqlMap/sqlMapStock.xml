@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.JH5th.logistics.purchase.dao.StockDAO">
+
+	<!-- stockDAO -->
+	<resultMap type="stockTO" id="stockResult">
+
+	<result property="warehouseCode" column="WAREHOUSE_CODE"/>
+	<result property="itemCode" column="ITEM_CODE"/>
+	<result property="deliveryNo" column="DELIVERY_NO"/>
+	<result property="productionResultNo" column="PRODUCTION_RESULT_NO"/>
+	<result property="inputItemNo" column="INPUT_ITEM_NO"/>
+	<result property="itemName" column="ITEM_NAME"/>
+	<result property="unitOfStock" column="UNIT_OF_STOCK"/>
+	<result property="safetyAllowanceAmount" column="SAFETY_ALLOWANCE_AMOUNT"/>
+	<result property="stockAmount" column="STOCK_AMOUNT"/>
+	<result property="description" column="DESCRIPTION"/>
+
+
+
+	</resultMap>
+
+	<select id="selectStockList" resultMap="stockResult">
+
+		SELECT
+		WAREHOUSE_CODE, ITEM_CODE, DELIVERY_NO
+		, PRODUCTION_RESULT_NO, INPUT_ITEM_NO
+		, ITEM_NAME, UNIT_OF_STOCK, SAFETY_ALLOWANCE_AMOUNT
+		, STOCK_AMOUNT, DESCRIPTION
+		FROM STOCK
+
+	</select>
+
+
+
+	<insert id="insertStock" parameterType="stockTO">
+
+		INSERT INTO STOCK
+		VALUES
+		( #{warehouseCode}
+		, #{itemCode}
+		, #{deliveryNo}
+		, #{productionResultNo}
+		, #{inputItemNo}
+		, #{itemName}
+		, #{unitOfStock}
+		, #{safetyAllowanceAmount}
+		, #{stockAmount}
+		, #{description} )
+
+	</insert>
+
+
+
+	<update id="updateStock" parameterType="stockTO">
+
+		UPDATE STOCK SET
+		DELIVERY_NO = #{deliveryNo}
+		, PRODUCTION_RESULT_NO = #{productionResultNo}
+		, INPUT_ITEM_NO = #{inputItemNo}
+		, ITEM_NAME = #{itemName}
+		, UNIT_OF_STOCK = #{unitOfStock}
+		, SAFETY_ALLOWANCE_AMOUNT = #{safetyAllowanceAmount}
+		, STOCK_AMOUNT = #{stockAmount}
+		, DESCRIPTION = #{description}
+		WHERE
+		WAREHOUSE_CODE = #{warehouseCode}
+		AND
+		ITEM_CODE = #{itemCode}
+
+	</update>
+
+
+
+	<delete id="deleteStock" parameterType="stockTO">
+
+		DELETE FROM STOCK
+		WHERE WAREHOUSE_CODE = #{warehouseCode}
+		AND
+		ITEM_CODE = #{itemCode}
+
+
+	</delete>
+
+
+
+
+
+</mapper>

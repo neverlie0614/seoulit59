@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.JH5th.logistics.business.dao.ContractDAO">
+
+
+<!-- contractDAO -->
+
+
+
+	<resultMap type="contractTO" id="contractResult">
+
+	<result property="contractNo" column="CONTRACT_NO"/>
+	<result property="estimateNo" column="ESTIMATE_NO"/>
+	<result property="contractType" column="CONTRACT_TYPE"/>
+	<result property="customerCode" column="CUSTOMER_CODE"/>
+	<result property="contractDate" column="CONTRACT_DATE"/>
+	<result property="contractRequester" column="CONTRACT_REQUESTER"/>
+	<result property="personCodeInCharge" column="PERSON_CODE_IN_CHARGE"/>
+	<result property="description" column="DESCRIPTION"/>
+	<result property="deliveryResultStatus" column="DELIVERY_RESULT_STATUS"/>
+
+	</resultMap>
+
+	<select id="selectContractList" resultMap="contractResult">
+
+		SELECT
+		CONTRACT_NO, ESTIMATE_NO, CONTRACT_TYPE, CUSTOMER_CODE
+		, CONTRACT_DATE, CONTRACT_REQUESTER, PERSON_CODE_IN_CHARGE
+		, DESCRIPTION, DELIVERY_RESULT_STATUS
+		FROM CONTRACT
+
+	</select>
+
+
+	<insert id="insertContract" parameterType="contractTO">
+
+		INSERT INTO CONTRACT
+		VALUES
+		( #{contractNo}
+		, #{estimateNo}
+		, #{contractType}
+		, #{customerCode}
+		, #{contractDate}
+		, #{contractRequester}
+		, #{personCodeInCharge}
+		, #{description}
+		, #{deliveryResultStatus}
+		 )
+
+	</insert>
+
+
+	<update id="updateContract" parameterType="contractTO">
+
+		UPDATE CONTRACT SET
+		CONTRACT_TYPE = #{contractType}
+		, CUSTOMER_CODE = #{customerCode}
+		, CONTRACT_DATE = #{contractDate}
+		, CONTRACT_REQUESTER = #{contractRequester}
+		, PERSON_CODE_IN_CHARGE = #{personCodeInCharge}
+		, DESCRIPTION = #{description}
+		, DELIVERY_RESULT_STATUS = #{deliveryResultStatus}
+		WHERE
+		CONTRACT_NO = #{contractNo}
+		AND
+		ESTIMATE_NO = #{estimateNo}
+
+
+	</update>
+
+
+
+	<delete id="deleteContract" parameterType="contractTO">
+		DELETE FROM CONTRACT
+		WHERE CONTRACT_NO = #{contractNo}
+	</delete>
+
+
+</mapper>

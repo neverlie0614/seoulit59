@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.JH5th.logistics.base.dao.PositionDAO">
+
+
+<!-- positionDAO -->
+
+
+	
+
+
+	<resultMap type="positionTO" id="positionResult">
+
+	<result property="workplaceCode" column="WORKPLACE_CODE"/>
+	<result property="deptCode" column="DEPT_CODE"/>
+	<result property="positionCode" column="POSITION_CODE"/>
+	<result property="positionName" column="POSITION_NAME"/>
+	<result property="description" column="DESCRIPTION"/>
+
+	</resultMap>
+
+
+	<select id="selectPositionList" resultMap="positionResult">
+
+		SELECT
+		WORKPLACE_CODE, DEPT_CODE, POSITION_CODE
+		, POSITION_NAME, DESCRIPTION
+		FROM POSITION
+
+	</select>
+
+
+
+</mapper>

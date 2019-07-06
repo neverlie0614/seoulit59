@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+  <configuration>
+
+	<settings>
+
+		<setting value="true" name="callSettersOnNulls" />
+
+		<setting value="false" name="cacheEnabled" />
+
+		<setting value="true" name="useGeneratedKeys" />
+
+		<setting value="REUSE" name="defaultExecutorType" />
+
+		<setting value="VARCHAR" name="jdbcTypeForNull" />
+
+		<setting value="true" name="mapUnderscoreToCamelCase" />
+
+
+	</settings>
+
+
+
+
+
+	<typeAliases>
+<!-- base -->
+		<typeAlias alias="codeTO" type="kr.co.JH5th.base.to.CodeTO" />
+		<typeAlias alias="codeDetailTO" type="kr.co.JH5th.base.to.CodeDetailTO" />
+		<typeAlias alias="menuTO" type="kr.co.JH5th.base.to.MenuTO" />
+<!-- emp -->
+		<typeAlias alias="employeeTO" type="kr.co.JH5th.hr.emp.to.EmployeeTO" />
+<!-- business -->
+		<typeAlias alias="contractTO" type="kr.co.JH5th.logistics.business.to.ContractTO" />
+		<typeAlias alias="contractDetailTO" type="kr.co.JH5th.logistics.business.to.ContractDetailTO" />
+		<typeAlias alias="contractReportTO" type="kr.co.JH5th.logistics.business.to.ContractReportTO" />
+		<typeAlias alias="customerTO" type="kr.co.JH5th.logistics.business.to.CustomerTO" />
+		<typeAlias alias="deliveryResultTO" type="kr.co.JH5th.logistics.business.to.DeliveryResultTO" />
+		<typeAlias alias="estimateTO" type="kr.co.JH5th.logistics.business.to.EstimateTO" />
+		<typeAlias alias="estimateDetailTO" type="kr.co.JH5th.logistics.business.to.EstimateDetailTO" />
+<!-- production -->
+		<typeAlias alias="mpsTO" type="kr.co.JH5th.logistics.production.to.MpsTO" />
+		<typeAlias alias="mrpGatheringTO" type="kr.co.JH5th.logistics.production.to.MrpGatheringTO" />
+		<typeAlias alias="mrpGatheringTO2" type="kr.co.JH5th.logistics.production.to.MrpGatheringTO2" />
+		<typeAlias alias="mrpOpenTempTO" type="kr.co.JH5th.logistics.production.to.MrpOpenTempTO" />
+		<typeAlias alias="mrpTO" type="kr.co.JH5th.logistics.production.to.MrpTO" />
+		<typeAlias alias="prmTO" type="kr.co.JH5th.logistics.production.to.PrmTO" />
+		<typeAlias alias="workInstructionTO" type="kr.co.JH5th.logistics.production.to.WorkInstructionTO" />
+		<typeAlias alias="MaterialCheckTO" type="kr.co.JH5th.logistics.production.to.MaterialCheckTO" />
+<!-- purchase -->
+		<typeAlias alias="bomDeployTO" type="kr.co.JH5th.logistics.purchase.to.BomDeployTO" />
+		<typeAlias alias="bomTO" type="kr.co.JH5th.logistics.purchase.to.BomTO" />
+		<typeAlias alias="itemTO" type="kr.co.JH5th.logistics.purchase.to.ItemTO" />
+		<typeAlias alias="materialPaymentTO" type="kr.co.JH5th.logistics.purchase.to.MaterialPaymentTO" />
+		<typeAlias alias="orderDetailTO" type="kr.co.JH5th.logistics.purchase.to.OrderDetailTO" />
+		<typeAlias alias="orderGatheringTO" type="kr.co.JH5th.logistics.purchase.to.OrderGatheringTO" />
+		<typeAlias alias="orderInfoTO" type="kr.co.JH5th.logistics.purchase.to.OrderInfoTO" />
+		<typeAlias alias="stockTO" type="kr.co.JH5th.logistics.purchase.to.StockTO" />
+		<typeAlias alias="warehousingTO" type="kr.co.JH5th.logistics.purchase.to.WarehousingTO" />
+
+		<typeAlias alias="companyTO" type="kr.co.JH5th.logistics.base.to.CompanyTO" />
+		<typeAlias alias="deptTO" type="kr.co.JH5th.logistics.base.to.DeptTO" />
+		<typeAlias alias="positionTO" type="kr.co.JH5th.logistics.base.to.PositionTO" />
+		<typeAlias alias="workplaceTO" type="kr.co.JH5th.logistics.base.to.WorkplaceTO" />
+
+
+
+
+
+
+	</typeAliases>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </configuration>

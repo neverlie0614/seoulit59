@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.JH5th.logistics.business.dao.DeliveryResultDAO">
+
+
+<!-- deliveryResultDAO -->
+
+	<resultMap type="deliveryResultTO" id="deliverResultResult">
+
+	<result property="deliveryNo" column="DELIVERY_NO"/>
+	<result property="contractDetailNo" column="CONTRACT_DETAIL_NO"/>
+	<result property="warehouseCode" column="WAREHOUSE_CODE"/>
+	<result property="itemCode" column="ITEM_CODE"/>
+	<result property="itemName" column="ITEM_NAME"/>
+	<result property="unitOfDeliveryResult" column="UNIT_OF_DELIVERY_RESULT"/>
+	<result property="deliveryDate" column="DELIVERY_DATE"/>
+	<result property="deliveryAmount" column="DELIVERY_AMOUNT"/>
+	<result property="description" column="DESCRIPTION"/>
+	<result property="customerCode" column="CUSTOMER_CODE"/>
+
+
+	</resultMap>
+
+	<select id="selectDeliveryResultList" resultMap="deliverResultResult">
+
+		SELECT
+		DELIVERY_NO, CONTRACT_DETAIL_NO, WAREHOUSE_CODE
+		, ITEM_CODE, ITEM_NAME, UNIT_OF_DELIVERY_RESULT
+		, DELIVERY_DATE, DELIVERY_AMOUNT, DESCRIPTION
+		, CUSTOMER_CODE
+		FROM DELIVERY_RESULT
+
+	</select>
+
+
+	<insert id="insertDeliveryResult" parameterType="deliveryResultTO">
+
+		INSERT INTO DELIVERY_RESULT
+		VALUES
+		( #{deliveryNo}
+		, #{contractDetailNo}
+		, #{warehouseCode}
+		, #{itemCode}
+		, #{itemName}
+		, #{unitOfDeliveryResult}
+		, #{deliveryDate}
+		, #{deliveryAmount}
+		, #{description}
+		, #{customerCode}
+		 )
+
+	</insert>
+
+
+
+
+
+
+</mapper>

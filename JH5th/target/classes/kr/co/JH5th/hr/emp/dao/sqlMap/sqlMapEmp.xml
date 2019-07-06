@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.JH5th.hr.emp.dao.EmployeeDAO">
+
+
+<!-- employeeDAO -->
+
+	
+	
+	<resultMap type="employeeTO" id="employeeResult">
+	
+		<result property="empCode" column="EMP_CODE" />
+		<result property="empName" column="EMP_NAME" />
+		<result property="companyCode" column="COMPANY_CODE" />
+		<result property="workplaceCode" column="WORKPLACE_CODE" />
+		<result property="deptCode" column="DEPT_CODE" />
+		<result property="positionCode" column="POSITION_CODE" />
+		<result property="socialSecurityNumber" column="SOCIAL_SECURITY_NUMBER" />
+		<result property="birthDate" column="BIRTH_DATE" />
+		<result property="gender" column="GENDER" />
+		<result property="email" column="EMAIL" />
+		<result property="phoneNumber" column="PHONE_NUMBER" />
+		<result property="image" column="IMAGE" />
+		<result property="userPw" column="USER_PW" />
+		<result property="zipCode" column="ZIP_CODE" />
+		<result property="basicAddress" column="BASIC_ADDRESS" />
+		<result property="detailAddress" column="DETAIL_ADDRESS" />
+		<result property="levelOfEducation" column="LEVEL_OF_EDUCATION" />
+		<result property="userOrNot" column="USER_OR_NOT" />
+		
+	</resultMap>
+	
+
+	<select id="selectEmployeeList" resultMap="employeeResult">
+	
+		SELECT
+		EMP_CODE, EMP_NAME, COMPANY_CODE, WORKPLACE_CODE
+		, DEPT_CODE, POSITION_CODE, SOCIAL_SECURITY_NUMBER
+		, BIRTH_DATE, GENDER, EMAIL, PHONE_NUMBER, IMAGE
+		, USER_PW, ZIP_CODE, BASIC_ADDRESS, DETAIL_ADDRESS
+		, LEVEL_OF_EDUCATION, USER_OR_NOT
+		FROM EMPLOYEE
+	
+  
+		
+	</select>
+
+
+
+
+
+</mapper>
